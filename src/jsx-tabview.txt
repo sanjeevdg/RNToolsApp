@@ -1,0 +1,91 @@
+<Tabs.Container>
+     
+      <Tabs.Tab name="A">
+        <View style={{
+             flex: 1,
+             width: screenWidth,
+         }}>
+
+ {(recipeItems.length !== 0) && 
+      <Tabs.FlatList
+                style={{
+             flex: 1,
+             width:screenWidth             
+            }}
+            data={recipeItems}
+            renderItem={ ({item})  => renderItem(item)}                
+                 keyExtractor={item => item.idCategory.toString()}
+                 extraData={item => item.idCategory} 
+                  />
+    }
+
+  </View>
+      </Tabs.Tab>
+
+
+
+
+
+      <Tabs.Tab name="B">
+       <View style={{display: 'flex',flexDirection: 'row',width: '100%' }} >
+
+ <Input
+          editable
+          multiline
+          numberOfLines={4}
+          placeholder="enter keywords"
+          maxLength={40}
+          onChangeText={text => setSearchTerm(text)}
+          value={searchTerm}
+          inputContainerStyle=
+                        {{borderColor:'black',width:'65%',height:45,borderWidth:1,borderRadius:8}}
+          inputStyle={{display:'flex'} }
+        />  
+
+
+<TouchableOpacity onPress={searchTheMealDb}
+  style={{
+        backgroundColor: '#0984e3',
+        borderRadius: 8,
+        flexDirection:'row',
+        height: 45,
+        marginLeft:-130,
+        marginTop:1,
+        width:'30%',
+        alignItems: 'center',
+        alignSelf:'flex-start',
+        justifyContent: 'center',
+     }} ><FaIcon name="search" color={'white'} size={25} />
+     <Text style={{fontSize:20, color:'white',fontFamily:'JosefinSans-SemiBold'}} >Search</Text>  
+</TouchableOpacity>
+</View>
+
+<View style={{
+             flex: 1,
+             width: screenWidth,
+         }}>
+
+ {(mealSearchItems.length !== 0) && 
+      <Tabs.FlatList
+                style={{
+             flex: 1,
+             width:screenWidth             
+            }}
+            data={mealSearchItems}
+            renderItem={ ({item})  => renderMealSearchItem(item)}                
+                 keyExtractor={item => item.idMeal.toString()}
+                 extraData={item => item.idMeal} 
+                  />
+    }
+
+  </View>
+
+      </Tabs.Tab>
+    </Tabs.Container>
+
+
+
+
+
+
+
